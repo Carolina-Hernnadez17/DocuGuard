@@ -13,11 +13,13 @@ namespace DocuGuard.Controllers
     {
         private readonly DocuGuardContext _context;
 
-
-
         public UsuariosController(DocuGuardContext context)
         {
             _context = context;
+        }
+        public IActionResult Login()
+        {
+            return View();
         }
 
         [HttpPost]
