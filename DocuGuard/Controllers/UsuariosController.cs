@@ -13,11 +13,58 @@ namespace DocuGuard.Controllers
     {
         private readonly DocuGuardContext _context;
 
+
+
         public UsuariosController(DocuGuardContext context)
         {
             _context = context;
         }
 
+        [HttpPost]
+        public IActionResult Login(usuarios usuario)
+        {
+            try
+            {
+
+                var user = _context.usuarios.FirstOrDefault(u => u.correo == usuario.correo);
+
+                if (user == null)
+                {
+                    TempData["Mensaje"] = "Cuenta inexistente o cerrada.";
+                    return RedirectToAction("Login");
+                }
+
+                // Comparar contraseñas directamente (sin hash)
+                if (user.contrasena != usuario.contrasena)
+                {
+                    TempData["Mensaje"] = "Correo o contraseña incorrectos.";
+                    return RedirectToAction("Login");
+                }
+                if (user.rol == "Usuario")
+                {
+                    HttpContext.Session.SetInt32("id_usuario", user.id_usuario);
+                    HttpContext.Session.SetString("NombreUser", user.nombre);
+
+                    TempData["UserId"] = user.id_usuario;
+                    return RedirectToAction("Index_usuario", "Home_Usuario");
+                }
+                else
+                {
+                    HttpContext.Session.SetInt32("id_usuario", user.id_usuario);
+                    HttpContext.Session.SetString("NombreUser", user.nombre);
+
+                    TempData["UserId"] = user.id_usuario;
+                    return RedirectToAction("Index", "Home");
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Mensaje = "Error al realizar el login: " + ex.Message;
+                return View();
+            }
+        }
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
