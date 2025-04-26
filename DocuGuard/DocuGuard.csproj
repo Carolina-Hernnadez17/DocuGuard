@@ -11,11 +11,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.4" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="css_C\" />
-    <Folder Include="css_R\" />
-    <Folder Include="css_E\" />
-    <Folder Include="css_L\" />
-  </ItemGroup>
-
 </Project>
