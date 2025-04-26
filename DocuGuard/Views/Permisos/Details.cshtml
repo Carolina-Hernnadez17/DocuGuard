@@ -1,0 +1,36 @@
+﻿@model DocuGuard.Models.permisos
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>permisos</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.id_documentos)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.id_documentos)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.id_usuario)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.id_usuario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nivel_acceso)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nivel_acceso)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.id_permisos">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

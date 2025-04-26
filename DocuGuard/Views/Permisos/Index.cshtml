@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DocuGuard.Models.permisos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id_documentos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nivel_acceso)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_documentos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nivel_acceso)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id_permisos">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id_permisos">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id_permisos">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
